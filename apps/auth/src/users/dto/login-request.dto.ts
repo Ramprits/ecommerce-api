@@ -1,16 +1,15 @@
 export class LoginRequest {
+  id: string;
 
-    id: string
+  email: string;
 
-    email: string
+  first_name: string;
 
-    first_name: string
+  last_name: string;
 
-    last_name: string
+  is_active: boolean;
 
-    is_active: boolean
+  profile_pic_url: string;
 
-    profile_pic_url: string
-
-    contact_no: string
+  contact_no: string;
 }

@@ -12,12 +12,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
   },
   dto: {
     create: CreateUserDto,
-    update: UpdateUserDto
+    update: UpdateUserDto,
   },
 })
-@ApiTags("Users")
+@ApiTags('Users')
 @Controller('users')
 export class UsersController implements CrudController<UserEntity> {
-  constructor(public service: UsersService) {
-  }
+  constructor(public service: UsersService) {}
 }

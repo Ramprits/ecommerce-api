@@ -1,4 +1,4 @@
-import { SwaggerConfig } from './swagger.interface'
+import { SwaggerConfig } from './swagger.interface';
 
 /**
  * Configuration for the swagger UI (found at /api).
@@ -14,4 +14,4 @@ export const SWAGGER_CONFIG: SwaggerConfig = {
     url: '',
     email: 'rpsahani@mailinator.com',
   },
-}
+};

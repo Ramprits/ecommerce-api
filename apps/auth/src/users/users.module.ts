@@ -13,17 +13,24 @@ import { JwtRefreshStrategy } from '../strategy/jwt-refresh.strategy';
 import { AuthController } from './auth.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity]),
+  imports: [
+    TypeOrmModule.forFeature([UserEntity]),
     PassportModule,
-  JwtModule.registerAsync({
-    inject: [ConfigService],
-    useFactory: (config: ConfigService) => ({
-      secret: config.get<string>('JWT_SECRET'),
-      signOptions: { expiresIn: '60m' },
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.get<string>('JWT_SECRET'),
+        signOptions: { expiresIn: '60m' },
+      }),
     }),
-  }),
   ],
   controllers: [UsersController, AuthController],
-  providers: [UsersService, AuthService, LocalStrategy, JwtStrategy, JwtRefreshStrategy]
+  providers: [
+    UsersService,
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    JwtRefreshStrategy,
+  ],
 })
-export class UsersModule { }
+export class UsersModule {}

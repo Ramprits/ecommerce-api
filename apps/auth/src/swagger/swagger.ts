@@ -1,22 +1,22 @@
-import { INestApplication } from '@nestjs/common'
-import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger'
+import { INestApplication } from '@nestjs/common';
+import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 
-import { SWAGGER_CONFIG } from './swagger.config'
+import { SWAGGER_CONFIG } from './swagger.config';
 
 export function createDocument(app: INestApplication): OpenAPIObject {
-  const { name, url, email } = SWAGGER_CONFIG.contact
+  const { name, url, email } = SWAGGER_CONFIG.contact;
   const builder = new DocumentBuilder()
     .setTitle(SWAGGER_CONFIG.title)
     .setContact(name, url, email)
     .setDescription(SWAGGER_CONFIG.description)
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-      'authorization'
+      'authorization',
     )
-    .setVersion(SWAGGER_CONFIG.version)
+    .setVersion(SWAGGER_CONFIG.version);
   for (const tag of SWAGGER_CONFIG.tags) {
-    builder.addTag(tag)
+    builder.addTag(tag);
   }
-  const options = builder.build()
-  return SwaggerModule.createDocument(app, options)
+  const options = builder.build();
+  return SwaggerModule.createDocument(app, options);
 }
