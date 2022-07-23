@@ -1,5 +1,6 @@
+import { genSaltSync, hashSync } from "bcrypt";
 import { Exclude } from "class-transformer";
-import { Column, Entity, Index } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, Index } from "typeorm";
 import { Base } from "../../shared/base-entity";
 
 @Entity("users")
@@ -26,4 +27,13 @@ export class UserEntity extends Base {
 
     @Column({ nullable: true })
     contact_no: string
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    hashPassword() {
+        if (this.password) {
+            this.password = hashSync(this.password, 10)
+        }
+    }
+
 }
