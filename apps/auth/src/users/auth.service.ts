@@ -20,10 +20,11 @@ export class AuthService {
     return this.jwt.sign({ id: user.id }, { expiresIn: '7d' });
   }
 
-  async register(user: CreateUserDto): Promise<UserResponse> {
+  async register(data: CreateUserDto): Promise<UserResponse> {
     const create_user = new UserEntity();
-    Object.assign(create_user, user);
-    return this.buildRegisterResponse(await this.userService.save(create_user));
+    Object.assign(create_user, data);
+    const user = await this.userService.save(create_user)
+    return this.buildRegisterResponse(user);
   }
 
   buildRegisterResponse(

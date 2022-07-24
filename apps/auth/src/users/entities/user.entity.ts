@@ -1,7 +1,11 @@
-import { genSaltSync, hashSync } from 'bcrypt';
+import {
+  BeforeInsert,
+  BeforeUpdate, Column,
+  Entity, Index
+} from 'typeorm';
+import { hashSync } from 'bcrypt';
 import { Exclude } from 'class-transformer';
-import { BeforeInsert, BeforeUpdate, Column, Entity, Index } from 'typeorm';
-import { Base } from '../../shared/base-entity';
+import { Base } from 'libs/common/src';
 
 @Entity('users')
 export class UserEntity extends Base {
